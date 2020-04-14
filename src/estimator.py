@@ -1,41 +1,49 @@
 
-def estimator():
-    region = {
-      'name': "Africa",
-      'avgAge': 19.7,
-      'avgDailyIncomeInUSD': 5,
-      'avgDailyIncomePopulation': 0.71
-    }
-    updates = {
-      'periodType': "days",
-      'timeToElapse': 58,
-      'reportedCases': 674,
-      'population': 66622705,
-      'totalHospitalBeds': 1380614
+data={
+    "region": {
+        "name": "Africa",
+        "avgAge": 19.7,
+        "avgDailyIncomeInUSD": 5,
+        "avgDailyIncomePopulation": 0.71
+        },
+    "periodType": "days",
+    "timeToElapse": 58,
+    "reportedCases": 674,
+    "population": 66622705,
+    "totalHospitalBeds": 1380614
     }
 
-#  marging region and updates into one dictionary region and saving region as data to reurned.
-    region.update(updates)
-    data=region           
+
+def estimator(data):    
 # your best case estimation are saved as a dictionary with a number of calculations from the data.
-    x=region['reportedCases']*10
-
+    x=(data['reportedCases'])*10
 # infectionsByRequestedTime = currentlyInfected * 2 ** a  (where a = z / 3) where z = requestedTime.
-    
-    g=int(input('Please enter number of days to estimate infection by days from today\n'))
+    def switch():
+        print('Please enter period for estimation\n')
+        print("Press 1 for day \npress 2 for weeks \npress 3 for months \n")
+        option = int(input("your option : "))
+        if option == 1:
+            days=int(input('Please enter number of Days for estimation:\n'))
+            print("Entered Days for estimation = ",days)
 
+        elif option == 2:
+            weeks=int(input('Please enter number of Weeks for estimation:\n'))
+            print('Entered Weeks for estimation =', weeks)
+            days= int(weeks*7)
+        elif option == 3:
+            months=int(input('Please enter number of Months for estimation:\n'))
+            print('Entered Months for estimation =', months)
+            days=int(months*30)
+        else:
+            print("Incorrect option")
+        return days
+    g = switch()
 # 35% of total hospital beds 
-
-    l=(region['totalHospitalBeds'])*0.35
-
-
+    l=(data['totalHospitalBeds'])*0.35
 # Number of days g divided by 3 saved into z .
-
-    z=int(g/3)
-    
+    z=int(g/3)    
 # infectionsByRequestedTime for impact
     e=x*2**z
-
 # 15% of infections by requested Time.
     h=int(0.15*e)
 # number of hospital beds by requested time.
@@ -55,7 +63,7 @@ def estimator():
         'casesForVentilatorsByRequestedTime':o,
         'dollarsInFlight':q}
 #   severe case estimation 
-    y=region['reportedCases']*50
+    y=(data['reportedCases'])*50
 # infectionsByRequestedTime for severeImpact
     f=y*2**z
 # 15% of infections by requested Time.
@@ -76,9 +84,15 @@ def estimator():
           'casesForICUByRequestedTime':n,
           'casesForVentilatorsByRequestedTime':p,
           'dollarsInFlight':r}         
-    print('Data:\n',data,'\nImpact:\n',impact,'\nSevere Impact:\n',severeImpact)
-estimator()
+#    print('Data:\n',data,'\nImpact:\n',impact,'\nSevere Impact:\n',severeImpact)
 
+    return {'Data':data, 
+            'Impact':impact, 
+            'Severe_Impact':severeImpact}
+                    
+
+
+print (estimator(data))
 
 
 
