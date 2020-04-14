@@ -37,25 +37,15 @@ def estimator():
     e=x*2**z
 
 # 15% of infections by requested Time.
-
     h=int(0.15*e)
-
 # number of hospital beds by requested time.
-    
     j=int(l-h)
-
 # 5% of of infections by requested date.
-
     m=int(0.05*e)
-
 # 2% of infections by requested time
-    
     o=int(0.02*e)
-
 # dollars in flight , estimate of how much money econemy is likely to lose
-
     q=int(e*0.71*5/g)
-
     impact={
         'currentlyInfected':x,
         'infectionsByRequestedTime':e,
@@ -64,35 +54,20 @@ def estimator():
         'casesForICUByRequestedTime':m,
         'casesForVentilatorsByRequestedTime':o,
         'dollarsInFlight':q}
-
 #   severe case estimation 
-
     y=region['reportedCases']*50
-
 # infectionsByRequestedTime for severeImpact
-
     f=y*2**z
-
 # 15% of infections by requested Time.
-
     i=int (0.15*f)
-
 # number of hospital beds by requested time.
-    
     k=int(l-i)
-
 # 5% of of infections by requested date.
-
     n=int(0.05*f)
-
 # 2% of infections by requested time
-    
     p=int(0.02*f)
-
 # dollars in flight , estimate of how much money econemy is likely to lose
-
     r=int(f*0.71*5/g)
-
     severeImpact={
           'currentlyInfected':y,
           'infectionsByRequestedTime':f,
@@ -101,9 +76,7 @@ def estimator():
           'casesForICUByRequestedTime':n,
           'casesForVentilatorsByRequestedTime':p,
           'dollarsInFlight':r}         
-
     print('Data:\n',data,'\nImpact:\n',impact,'\nSevere Impact:\n',severeImpact)
-
 estimator()
 
 
