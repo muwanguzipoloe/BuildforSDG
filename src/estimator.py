@@ -1,4 +1,4 @@
-
+import json
 data={
     "region": {
         "name": "Africa",
@@ -84,11 +84,11 @@ def estimator(data):
           'casesForICUByRequestedTime':n,
           'casesForVentilatorsByRequestedTime':p,
           'dollarsInFlight':r}         
-#    print('Data:\n',data,'\nImpact:\n',impact,'\nSevere Impact:\n',severeImpact)
-
-    return {'Data':data, 
-            'Impact':impact, 
-            'Severe_Impact':severeImpact}
+    json_data = ('Data',data, 
+            'Impact',impact, 
+            'Severe_Impact',severeImpact)
+    json_info = json.dumps(json_data)
+    return json_info
                     
 
 
